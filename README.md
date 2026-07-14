@@ -1,21 +1,34 @@
-# CodeAlpha Graphic Design Internship
+# 🎨 CodeAlpha Graphic Design Internship
 
-## Completed Tasks
+Welcome to my CodeAlpha Graphic Design Internship repository.
+
+## 📌 Completed Tasks
 
 ### ✅ Task 1 - Logo Redesign
-Modern redesign of an existing logo while maintaining brand identity.
+- Modern logo redesign
+- Brand identity maintained
 
 ### ✅ Task 2 - UI/UX Design
-Responsive UI/UX prototype developed using HTML, CSS, and JavaScript.
+- Responsive UI Prototype
+- HTML, CSS & JavaScript
+- Interactive design
 
 ### ✅ Task 3 - Typography Practice
-Typography design focusing on spacing, hierarchy, and alignment.
+- Typography hierarchy
+- Alignment
+- Font pairing
+- Responsive layout
 
-## Tools Used
-- HTML
+## 🛠 Tools Used
+
+- HTML5
 - CSS
 - JavaScript
 - Canva
+- Figma
 
-Created by:
+## 👨‍💻 Author
+
 **Tanishq Kumar**
+
+CodeAlpha Graphic Design Intern
