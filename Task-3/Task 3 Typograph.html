@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Reading the Monsoon — Typography Practice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Work+Sans:wght@400;600&family=Bebas+Neue&family=Kalam:wght@400;700&display=swap');
+
+:root{
+  --storm:#1B2027;
+  --storm-card:#232B35;
+  --slate:#2B3440;
+  --mist:#ECEFEF;
+  --mist-dim:#DCE2E2;
+  --clay:#B08160;
+  --leaf:#7E9C81;
+  --flash:#C9E265;
+  --ink:#171B20;
+  --ink-soft:#5B6570;
+  --paper-soft:#8D99A1;
+
+  --f-display:'Space Grotesk', sans-serif;
+  --f-body:'IBM Plex Sans', sans-serif;
+  --f-mono:'IBM Plex Mono', monospace;
+  --f-serif:'Playfair Display', serif;
+  --f-poster:'Bebas Neue', sans-serif;
+  --f-hand:'Kalam', cursive;
+  --f-pairbody:'Work Sans', sans-serif;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  padding:56px 20px 70px;
+  background:var(--storm);
+  font-family:var(--f-body);
+  color:var(--mist);
+  display:flex;flex-direction:column;align-items:center;
+}
+.page{width:100%;max-width:1080px;}
+
+/* header */
+.page-header{text-align:center;margin-bottom:52px;}
+.eyebrow{font-family:var(--f-mono);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--flash);margin-bottom:10px;}
+.page-header h1{font-family:var(--f-display);font-weight:700;font-size:clamp(1.9rem,4.6vw,3rem);margin:0 0 10px;color:var(--mist);}
+.page-header p{font-size:.9rem;color:var(--paper-soft);max-width:520px;margin:0 auto;}
+
+/* section shell */
+section.block{margin-bottom:64px;}
+.block-heading{display:flex;align-items:baseline;gap:10px;margin-bottom:20px;border-bottom:1px solid var(--slate);padding-bottom:12px;}
+.block-heading .num{font-family:var(--f-mono);color:var(--flash);font-weight:600;font-size:.95rem;}
+.block-heading h2{font-family:var(--f-display);font-weight:600;font-size:1.25rem;margin:0;color:var(--mist);}
+.block-sub{font-size:.82rem;color:var(--paper-soft);margin:-8px 0 22px;}
+
+/* ---------------- 01 Font pairing ---------------- */
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+.pair-card{background:var(--mist);color:var(--ink);border-radius:10px;padding:22px 22px 18px;display:flex;flex-direction:column;gap:10px;min-height:190px;}
+.pair-label{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:.66rem;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);}
+.pair-headline{font-size:1.7rem;line-height:1.15;margin:2px 0 0;}
+.pair-body{font-size:.82rem;color:var(--ink-soft);line-height:1.5;max-width:34ch;}
+.pair-rationale{margin-top:auto;font-family:var(--f-mono);font-size:.68rem;color:var(--clay);border-top:1px dashed var(--mist-dim);padding-top:8px;}
+
+.p1 .pair-headline{font-family:var(--f-serif);font-style:italic;font-weight:600;}
+.p1 .pair-body{font-family:var(--f-pairbody);}
+.p2 .pair-headline{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.p2 .pair-body{font-family:var(--f-body);}
+.p3{background:var(--slate);color:var(--mist);}
+.p3 .pair-label{color:var(--paper-soft);}
+.p3 .pair-headline{font-family:var(--f-poster);font-size:2.3rem;letter-spacing:1px;color:var(--flash);}
+.p3 .pair-body{font-family:var(--f-mono);color:var(--paper-soft);font-size:.72rem;letter-spacing:.5px;}
+.p3 .pair-rationale{border-top:1px dashed #3a4552;color:var(--flash);}
+.p4 .pair-headline{font-family:var(--f-hand);font-weight:700;color:var(--leaf);}
+.p4 .pair-body{font-family:var(--f-body);}
+
+/* ---------------- 02 Hierarchy ---------------- */
+.hierarchy-card{background:var(--mist);color:var(--ink);border-radius:10px;padding:40px 34px;position:relative;}
+.hspec{display:flex;align-items:center;gap:16px;margin-bottom:14px;position:relative;}
+.hspec:last-child{margin-bottom:0;}
+.hspec .h-el{flex:1;}
+.hspec .h-tag{font-family:var(--f-mono);font-size:.66rem;color:var(--ink-soft);white-space:nowrap;border:1px solid var(--mist-dim);border-radius:4px;padding:2px 7px;}
+.h-eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--clay);}
+.h-h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.02;letter-spacing:-.5px;}
+.h-h2{font-family:var(--f-display);font-weight:500;font-size:1.35rem;color:var(--ink-soft);}
+.h-body{font-family:var(--f-body);font-size:.9rem;line-height:1.6;color:var(--ink-soft);max-width:52ch;}
+.h-caption{font-family:var(--f-mono);font-size:.7rem;letter-spacing:1px;color:var(--clay);}
+
+/* ---------------- 03 Spacing & alignment ---------------- */
+.space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+.space-card{background:var(--mist);color:var(--ink);border-radius:10px;padding:26px 22px;display:flex;flex-direction:column;gap:14px;min-height:190px;}
+.space-card .tag{font-family:var(--f-mono);font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);}
+.space-phrase{font-family:var(--f-display);font-weight:700;font-size:1.5rem;flex:1;display:flex;align-items:center;}
+.s1 .space-phrase{letter-spacing:-1px;line-height:.95;text-align:left;}
+.s2 .space-phrase{letter-spacing:6px;text-align:center;justify-content:center;font-size:1.25rem;}
+.s3 .space-phrase{font-family:var(--f-body);font-weight:400;font-size:.85rem;text-align:justify;line-height:1.7;letter-spacing:normal;}
+.space-note{font-family:var(--f-mono);font-size:.68rem;color:var(--clay);border-top:1px dashed var(--mist-dim);padding-top:8px;}
+
+/* ---------------- 04 Psychological effect ---------------- */
+.mood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.mood-card{background:var(--slate);border-radius:10px;padding:26px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.mood-word{font-size:2.1rem;color:var(--mist);}
+.mood-note{font-family:var(--f-mono);font-size:.68rem;color:var(--flash);letter-spacing:.3px;}
+.m1 .mood-word{font-family:var(--f-display);font-weight:700;letter-spacing:1px;}
+.m2 .mood-word{font-family:var(--f-serif);font-style:italic;font-weight:600;}
+.m3 .mood-word{font-family:var(--f-poster);letter-spacing:4px;transform:scaleY(1.15);}
+.m4 .mood-word{font-family:var(--f-mono);font-weight:600;letter-spacing:2px;font-size:1.5rem;}
+.m5 .mood-word{font-family:var(--f-hand);font-weight:700;color:var(--leaf);}
+.m6 .mood-word{font-family:var(--f-display);font-weight:700;transform:skewY(-3deg);text-shadow:0 8px 0 rgba(201,226,101,.18),0 2px 10px rgba(0,0,0,.4);letter-spacing:1px;}
+
+/* ---------------- 05 Signature poster ---------------- */
+.poster{position:relative;background:var(--storm-card);border-radius:12px;padding:70px 30px;overflow:hidden;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+.radar{position:absolute;top:50%;left:50%;border:1px solid rgba(201,226,101,.16);border-radius:50%;transform:translate(-50%,-50%);}
+.r1{width:180px;height:180px;}
+.r2{width:340px;height:340px;}
+.r3{width:520px;height:520px;}
+.r4{width:700px;height:700px;}
+.poster-eyebrow{position:relative;font-family:var(--f-mono);font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--paper-soft);margin-bottom:14px;}
+.poster-title{position:relative;font-family:var(--f-display);font-weight:700;font-size:clamp(3rem,10vw,6.2rem);line-height:.92;letter-spacing:-1px;color:var(--mist);}
+.poster-title span{color:var(--flash);}
+.poster-sub{position:relative;font-family:var(--f-serif);font-style:italic;font-size:1.1rem;color:var(--paper-soft);margin-top:16px;max-width:34ch;}
+.poster-bulletin{position:relative;font-family:var(--f-mono);font-size:.68rem;letter-spacing:1.5px;color:var(--clay);margin-top:34px;border-top:1px solid var(--slate);padding-top:14px;}
+
+/* footer */
+.tools-note{font-size:.82rem;color:var(--paper-soft);line-height:1.6;max-width:600px;margin:0 auto 14px;text-align:center;}
+.tools-list{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.tool-chip{font-family:var(--f-mono);font-size:.7rem;border:1px solid var(--slate);color:var(--paper-soft);padding:5px 12px;border-radius:14px;}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="page-header">
+    <div class="eyebrow">Task 03 · Typography Practice</div>
+    <h1>Reading the Monsoon</h1>
+    <p>Font pairing, hierarchy, spacing, alignment — and the feelings type carries — practiced through one season's worth of weather.</p>
+  </header>
+
+  <!-- 01 FONT PAIRING -->
+  <section class="block">
+    <div class="block-heading"><span class="num">01</span><h2>Font Pairing</h2></div>
+    <p class="block-sub">Four pairings, four moods — same brief, different voice.</p>
+    <div class="pair-grid">
+      <div class="pair-card p1">
+        <div class="pair-label"><span>Pairing 01</span><span>Serif + Sans</span></div>
+        <div class="pair-headline">The First Rain</div>
+        <div class="pair-body">Notes on petrichor, grey skies, and water on a tin roof.</div>
+        <div class="pair-rationale">Editorial · warmth with restraint</div>
+      </div>
+      <div class="pair-card p2">
+        <div class="pair-label"><span>Pairing 02</span><span>Grotesk + Sans</span></div>
+        <div class="pair-headline">MONSOON WATCH</div>
+        <div class="pair-body">72mm rainfall recorded across the coast since midnight.</div>
+        <div class="pair-rationale">Technical · clear and modern</div>
+      </div>
+      <div class="pair-card p3">
+        <div class="pair-label"><span>Pairing 03</span><span>Poster + Mono</span></div>
+        <div class="pair-headline">HEAVY RAIN WARNING</div>
+        <div class="pair-body">DISTRICT ALERT LEVEL 03 — STAY INDOORS</div>
+        <div class="pair-rationale">Poster · loud and unmissable</div>
+      </div>
+      <div class="pair-card p4">
+        <div class="pair-label"><span>Pairing 04</span><span>Script + Sans</span></div>
+        <div class="pair-headline">Chai on a rainy evening</div>
+        <div class="pair-body">Some things are better with the windows open, kettle on.</div>
+        <div class="pair-rationale">Personal · handwritten warmth</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 HIERARCHY -->
+  <section class="block">
+    <div class="block-heading"><span class="num">02</span><h2>Hierarchy &amp; Scale</h2></div>
+    <p class="block-sub">One poster, five levels — the eye knows where to land first.</p>
+    <div class="hierarchy-card">
+      <div class="hspec"><div class="h-el h-eyebrow">Annual Event</div><div class="h-tag">13px / 600 / +2.5</div></div>
+      <div class="hspec"><div class="h-el h-h1">MONSOON<br>FEST</div><div class="h-tag">64px / 700</div></div>
+      <div class="hspec"><div class="h-el h-h2">Three days of rain, music &amp; street food</div><div class="h-tag">22px / 500</div></div>
+      <div class="hspec"><div class="h-el h-body">Open-air stages, covered food streets, and a city that doesn't stop for weather. Bring an umbrella you don't mind losing.</div><div class="h-tag">15px / 400</div></div>
+      <div class="hspec"><div class="h-el h-caption">12–14 JULY · OPEN GROUNDS</div><div class="h-tag">12px / 600 mono</div></div>
+    </div>
+  </section>
+
+  <!-- 03 SPACING & ALIGNMENT -->
+  <section class="block">
+    <div class="block-heading"><span class="num">03</span><h2>Spacing &amp; Alignment</h2></div>
+    <p class="block-sub">Same words, three treatments — spacing changes what a line feels like.</p>
+    <div class="space-grid">
+      <div class="space-card s1">
+        <span class="tag">Tight · Left</span>
+        <div class="space-phrase">LET IT<br>POUR</div>
+        <div class="space-note">Compressed, urgent — a shout, not a suggestion.</div>
+      </div>
+      <div class="space-card s2">
+        <span class="tag">Wide · Centered</span>
+        <div class="space-phrase">LET IT POUR</div>
+        <div class="space-note">Room to breathe — calm, deliberate, unhurried.</div>
+      </div>
+      <div class="space-card s3">
+        <span class="tag">Justified · Block</span>
+        <div class="space-phrase">Let it pour tonight. The city has been waiting for this since April, and every gutter is finally earning its keep.</div>
+        <div class="space-note">Even edges read as formal, considered, official.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PSYCHOLOGICAL EFFECT -->
+  <section class="block">
+    <div class="block-heading"><span class="num">04</span><h2>Psychological Effect of Type</h2></div>
+    <p class="block-sub">One word, six typefaces — the letterforms change the feeling, not the meaning.</p>
+    <div class="mood-grid">
+      <div class="mood-card m1"><div class="mood-word">STORM</div><div class="mood-note">Confident, modern, alert</div></div>
+      <div class="mood-card m2"><div class="mood-word">Storm</div><div class="mood-note">Elegant, reflective, literary</div></div>
+      <div class="mood-card m3"><div class="mood-word">STORM</div><div class="mood-note">Loud, urgent, poster-like</div></div>
+      <div class="mood-card m4"><div class="mood-word">STORM</div><div class="mood-note">Clinical, technical, precise</div></div>
+      <div class="mood-card m5"><div class="mood-word">Storm</div><div class="mood-note">Personal, informal, gentle</div></div>
+      <div class="mood-card m6"><div class="mood-word">STORM</div><div class="mood-note">Heavy, unsettling, weighed-down</div></div>
+    </div>
+  </section>
+
+  <!-- 05 SIGNATURE POSTER -->
+  <section class="block">
+    <div class="block-heading"><span class="num">05</span><h2>Impactful Text-Only Poster</h2></div>
+    <p class="block-sub">No imagery — the type is the entire image.</p>
+    <div class="poster">
+      <div class="radar r4"></div><div class="radar r3"></div><div class="radar r2"></div><div class="radar r1"></div>
+      <div class="poster-eyebrow">Weather Bulletin</div>
+      <div class="poster-title">MAN<span>SOON</span></div>
+      <div class="poster-sub">Everything the dry season forgot to say, the sky says at once.</div>
+      <div class="poster-bulletin">IMD BULLETIN · 09 JUL 2026 · HEAVY TO VERY HEAVY RAINFALL EXPECTED</div>
+    </div>
+  </section>
+
+  <section class="block" style="margin-bottom:10px;">
+    <div class="block-heading"><span class="num">06</span><h2>Tools &amp; Notes</h2></div>
+    <p class="tools-note">Built in HTML/CSS as a portable type specimen — every headline, pairing, and spacing value here translates directly to text styles and character/paragraph settings in any of the tools below.</p>
+    <div class="tools-list">
+      <span class="tool-chip">Adobe Illustrator</span><span class="tool-chip">Photoshop</span><span class="tool-chip">Canva</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
