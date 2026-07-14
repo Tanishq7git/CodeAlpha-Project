@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TiffinBox — UI/UX Design Prototype</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root{
+  --forest:#1F3329;
+  --forest-light:#2C4436;
+  --turmeric:#E8A33D;
+  --turmeric-dark:#C9832A;
+  --paper:#F7F1E1;
+  --paper-dim:#EDE4CC;
+  --chili:#B23A2C;
+  --ink:#21201B;
+  --ink-soft:#635E4E;
+  --white:#FFFFFF;
+  --wire-bg:#ffffff;
+  --wire-box:#e4e4e2;
+  --wire-border:#a3a29c;
+  --wire-text:#8d8c86;
+  --font-display:'Fraunces', serif;
+  --font-body:'Work Sans', sans-serif;
+  --font-mono:'JetBrains Mono', monospace;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  padding:48px 20px 64px;
+  background:#EFEAdd;
+  background-image: radial-gradient(circle at 1px 1px, #e3ddc9 1px, transparent 0);
+  background-size: 22px 22px;
+  font-family:var(--font-body);
+  color:var(--ink);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+button{font-family:inherit;cursor:pointer;}
+button:focus-visible, .cook-card:focus-visible, .pay-option:focus-visible{
+  outline:3px solid var(--turmeric-dark);
+  outline-offset:2px;
+}
+.page{width:100%;max-width:1120px;}
+
+/* ---------- Header ---------- */
+.page-header{text-align:center;margin-bottom:44px;}
+.brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;}
+.brand-mark{width:26px;height:30px;position:relative;}
+.brand-mark .t{width:26px;height:8px;background:var(--forest);border-radius:3px;position:absolute;left:0;}
+.brand-mark .t1{top:0;} .brand-mark .t2{top:9px;} .brand-mark .t3{top:18px;}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--forest);letter-spacing:.2px;}
+.page-header h1{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,3.4vw,2.15rem);margin:2px 0 10px;color:var(--ink);}
+.page-header .meta{font-family:var(--font-mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);}
+
+/* ---------- Section shells ---------- */
+section.block{margin-bottom:56px;}
+.block-heading{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;border-bottom:2px solid var(--forest);padding-bottom:10px;}
+.block-heading .num{font-family:var(--font-mono);color:var(--turmeric-dark);font-weight:600;font-size:1rem;}
+.block-heading h2{font-family:var(--font-display);font-weight:600;font-size:1.3rem;margin:0;color:var(--forest);}
+.block-sub{font-size:.85rem;color:var(--ink-soft);margin:10px 0 20px;}
+
+/* ---------- Wireframes ---------- */
+.wire-row{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;}
+.wire-phone{width:190px;}
+.wire-screen{
+  width:190px;height:370px;background:var(--wire-bg);border:2px solid var(--wire-border);
+  border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:7px;overflow:hidden;
+}
+.wire-label{text-align:center;margin-top:8px;font-family:var(--font-mono);font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--wire-text);}
+.wf-bar{height:16px;background:var(--wire-box);border:1px dashed var(--wire-border);border-radius:4px;}
+.wf-bar.sm{width:60%;height:10px;}
+.wf-search{height:20px;background:var(--wire-bg);border:1.5px solid var(--wire-border);border-radius:10px;}
+.wf-row{display:flex;gap:6px;align-items:center;}
+.wf-img{width:34px;height:34px;background:var(--wire-box);border:1px dashed var(--wire-border);border-radius:5px;flex-shrink:0;}
+.wf-lines{flex:1;display:flex;flex-direction:column;gap:4px;}
+.wf-line{height:6px;background:var(--wire-box);border-radius:3px;}
+.wf-cover{width:100%;height:60px;background:var(--wire-box);border:1px dashed var(--wire-border);border-radius:6px;}
+.wf-radio{display:flex;align-items:center;gap:6px;}
+.wf-circle{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--wire-border);flex-shrink:0;}
+.wf-btn{margin-top:auto;height:22px;background:var(--wire-box);border:1.5px solid var(--wire-border);border-radius:6px;}
+.wf-navbar{height:26px;display:flex;justify-content:space-around;align-items:center;border-top:1.5px solid var(--wire-border);padding-top:6px;}
+.wf-dot{width:12px;height:12px;border:1.5px solid var(--wire-border);border-radius:3px;}
+
+/* ---------- Prototype ---------- */
+.hint{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-soft);text-align:center;margin:-6px 0 24px;letter-spacing:.4px;}
+.prototype-wrap{display:flex;justify-content:center;}
+.phone-frame{
+  width:308px;height:646px;background:var(--forest);border-radius:42px;padding:12px;
+  box-shadow:0 30px 60px -20px rgba(31,51,41,.45), 0 0 0 2px var(--forest-light);
+  position:relative;flex-shrink:0;
+}
+.notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:100px;height:20px;background:var(--forest);border-radius:0 0 14px 14px;z-index:5;}
+.notch::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44px;height:5px;border-radius:3px;background:#0c1712;}
+.screen-area{width:100%;height:100%;background:var(--paper);border-radius:30px;overflow:hidden;position:relative;}
+.screen{
+  position:absolute;inset:0;display:none;flex-direction:column;background:var(--paper);
+  overflow-y:auto;padding-bottom:0;
+}
+.screen.active{display:flex;}
+.screen::-webkit-scrollbar{width:0;}
+
+/* shared UI bits */
+.top-bar{display:flex;align-items:center;gap:10px;padding:34px 16px 14px;background:var(--forest);color:var(--paper);flex-shrink:0;}
+.top-bar h3{font-family:var(--font-display);font-size:1.05rem;font-weight:600;margin:0;}
+.back-btn{width:30px;height:30px;border-radius:50%;border:none;background:rgba(247,241,225,.14);color:var(--paper);font-size:1rem;display:flex;align-items:center;justify-content:center;}
+.icon-btn{width:30px;height:30px;border-radius:50%;border:none;background:rgba(247,241,225,.14);color:var(--paper);display:flex;align-items:center;justify-content:center;margin-left:auto;}
+
+/* Splash */
+#screen-splash{align-items:center;justify-content:center;background:var(--forest);gap:18px;text-align:center;padding:0 30px;}
+.splash-mark{width:74px;height:86px;position:relative;margin-bottom:6px;}
+.splash-mark .tier{width:74px;height:22px;background:var(--turmeric);border:2px solid var(--turmeric-dark);border-radius:8px;position:absolute;left:0;}
+.splash-mark .tier1{top:0;} .splash-mark .tier2{top:24px;} .splash-mark .tier3{top:48px;}
+.splash-mark .handle{position:absolute;top:-16px;left:17px;width:40px;height:24px;border:4px solid var(--turmeric);border-bottom:none;border-radius:20px 20px 0 0;}
+#screen-splash h1{font-family:var(--font-display);color:var(--paper);font-size:1.7rem;font-weight:700;margin:0;}
+#screen-splash p{color:var(--paper-dim);font-size:.85rem;margin:0 0 10px;}
+.primary-btn{background:var(--turmeric);color:var(--forest);border:none;font-weight:600;font-size:.85rem;padding:12px 26px;border-radius:24px;}
+
+/* Home */
+.chip-row{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;flex-shrink:0;}
+.chip{flex-shrink:0;border:1.5px solid var(--forest);background:transparent;color:var(--forest);font-size:.72rem;font-weight:600;padding:6px 13px;border-radius:16px;}
+.chip.active{background:var(--turmeric);border-color:var(--turmeric-dark);color:var(--forest);}
+.section-label{font-family:var(--font-display);font-weight:600;font-size:.9rem;padding:6px 16px;color:var(--ink);}
+.cook-list{display:flex;flex-direction:column;gap:10px;padding:0 16px 90px;}
+.cook-card{display:flex;gap:10px;text-align:left;background:var(--white);border:1px solid var(--paper-dim);border-radius:14px;padding:10px;}
+.avatar{width:46px;height:46px;border-radius:12px;background:var(--forest);color:var(--paper);font-family:var(--font-mono);font-weight:600;font-size:.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cook-info{flex:1;}
+.cook-info .name{font-weight:600;font-size:.83rem;display:block;}
+.cook-info .dish{font-size:.74rem;color:var(--ink-soft);display:block;margin:1px 0 5px;}
+.cook-meta{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-soft);display:flex;gap:8px;align-items:center;}
+.spice{color:var(--chili);}
+
+/* Detail */
+.cover{height:96px;background:linear-gradient(135deg,var(--forest),var(--forest-light));flex-shrink:0;position:relative;}
+.cover-info{background:var(--white);margin:-16px 14px 0;border-radius:14px;padding:12px 14px;box-shadow:0 4px 14px rgba(0,0,0,.06);position:relative;z-index:2;}
+.cover-info .name{font-family:var(--font-display);font-weight:600;font-size:1rem;}
+.cover-info .sub{font-size:.7rem;color:var(--ink-soft);font-family:var(--font-mono);margin-top:2px;display:block;}
+.menu-list{padding:14px 16px 100px;display:flex;flex-direction:column;gap:12px;}
+.menu-row{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.menu-row .item-name{font-size:.82rem;font-weight:500;display:block;}
+.menu-row .item-price{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-soft);}
+.stepper{display:flex;align-items:center;gap:8px;background:var(--paper-dim);border-radius:20px;padding:3px 4px;}
+.stepper button{width:22px;height:22px;border-radius:50%;border:none;background:var(--forest);color:var(--paper);font-size:.85rem;line-height:1;}
+.stepper span{font-family:var(--font-mono);font-size:.78rem;min-width:14px;text-align:center;}
+.sticky-bar{position:absolute;left:0;right:0;bottom:0;display:none;align-items:center;justify-content:space-between;background:var(--forest);color:var(--paper);padding:13px 16px;font-size:.8rem;}
+.sticky-bar .go{background:var(--turmeric);color:var(--forest);border:none;border-radius:14px;padding:7px 14px;font-weight:600;font-size:.72rem;}
+
+/* Cart */
+.cart-body{padding:14px 16px 20px;flex:1;display:flex;flex-direction:column;gap:12px;}
+.cart-row{display:flex;justify-content:space-between;align-items:center;background:var(--white);border:1px solid var(--paper-dim);border-radius:12px;padding:10px 12px;}
+.cart-row-info{display:flex;flex-direction:column;gap:2px;}
+.cart-row-name{font-size:.8rem;font-weight:500;}
+.cart-row-price{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-soft);}
+.empty-state{flex:1;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--ink-soft);text-align:center;padding:0 24px;}
+.empty-state span{font-size:.8rem;}
+.summary-card{background:var(--white);border:1px solid var(--paper-dim);border-radius:12px;padding:12px 14px;font-size:.78rem;display:flex;flex-direction:column;gap:6px;margin-top:auto;}
+.summary-row{display:flex;justify-content:space-between;}
+.summary-row.total{font-weight:700;border-top:1px dashed var(--paper-dim);padding-top:6px;}
+textarea.note{border:1px solid var(--paper-dim);border-radius:10px;padding:8px 10px;font-family:inherit;font-size:.75rem;resize:none;height:44px;}
+.full-btn{background:var(--forest);color:var(--paper);border:none;border-radius:14px;padding:12px;font-weight:600;font-size:.82rem;}
+.full-btn:disabled{opacity:.4;}
+
+/* Checkout */
+.checkout-body{padding:14px 16px 24px;display:flex;flex-direction:column;gap:14px;}
+.addr-card{background:var(--white);border:1px solid var(--paper-dim);border-radius:12px;padding:12px 14px;font-size:.78rem;}
+.addr-card b{display:block;font-size:.82rem;margin-bottom:3px;}
+.pay-option{display:flex;align-items:center;gap:10px;border:1.5px solid var(--paper-dim);border-radius:12px;padding:10px 12px;background:var(--white);font-size:.8rem;text-align:left;}
+.pay-option .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--ink-soft);flex-shrink:0;}
+.pay-option.selected{border-color:var(--turmeric-dark);background:#FFF7E9;}
+.pay-option.selected .dot{border-color:var(--turmeric-dark);background:radial-gradient(var(--turmeric-dark) 45%,transparent 50%);}
+
+/* Tracking */
+.tracking-body{padding:22px 16px 30px;display:flex;flex-direction:column;align-items:center;gap:18px;flex:1;}
+.timer{font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--forest);}
+.timer-label{font-size:.68rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:1px;margin-top:-14px;}
+.tracker{display:flex;gap:20px;align-items:flex-start;}
+.tier-stack{display:flex;flex-direction:column;gap:5px;align-items:center;padding-top:26px;position:relative;}
+.tier-stack .handle{position:absolute;top:0;width:34px;height:20px;border:4px solid var(--forest);border-bottom:none;border-radius:16px 16px 0 0;}
+.tier{width:64px;height:26px;border:2px solid var(--forest);border-radius:8px;background:var(--paper);transition:background-color .5s, border-color .5s;}
+.tier.done{background:var(--turmeric);border-color:var(--turmeric-dark);}
+.stage-list{list-style:none;margin:0;padding:26px 0 0;display:flex;flex-direction:column;gap:20px;font-size:.78rem;color:var(--ink-soft);}
+.stage-list li{position:relative;padding-left:4px;}
+.stage-list li.done{color:var(--ink);font-weight:600;}
+.stage-list li.done::before{content:'✓ ';color:var(--turmeric-dark);}
+.rider-card{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--paper-dim);border-radius:12px;padding:10px 12px;width:100%;font-size:.78rem;}
+.rider-card .name{font-weight:600;display:block;}
+
+/* Profile */
+.profile-head{display:flex;flex-direction:column;align-items:center;gap:8px;padding:34px 16px 18px;background:var(--forest);color:var(--paper);flex-shrink:0;}
+.profile-avatar{width:56px;height:56px;border-radius:50%;background:var(--turmeric);color:var(--forest);font-family:var(--font-mono);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.profile-list{display:flex;flex-direction:column;padding:10px 16px 100px;}
+.profile-row{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-bottom:1px solid var(--paper-dim);font-size:.8rem;background:none;border-left:none;border-right:none;border-top:none;text-align:left;color:var(--ink);width:100%;}
+.profile-row .chev{color:var(--ink-soft);}
+.logout{margin:18px 2px 0;color:var(--chili);border:1.5px solid var(--chili);background:none;border-radius:12px;padding:10px;font-weight:600;font-size:.78rem;}
+
+/* Bottom nav */
+.bottom-nav{position:absolute;left:0;right:0;bottom:0;display:none;justify-content:space-around;align-items:center;height:60px;background:var(--white);border-top:1px solid var(--paper-dim);z-index:6;}
+.nav-item{position:relative;background:none;border:none;color:var(--ink-soft);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.6rem;font-family:var(--font-mono);}
+.nav-item.active{color:var(--forest);}
+.nav-item svg{width:19px;height:19px;}
+.nav-badge{position:absolute;top:-4px;right:6px;background:var(--chili);color:#fff;font-size:.55rem;width:14px;height:14px;border-radius:50%;display:none;align-items:center;justify-content:center;font-family:var(--font-mono);}
+
+/* Flow diagram */
+.flow-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:10px;}
+.flow-node{font-family:var(--font-mono);font-size:.72rem;background:var(--white);border:1.5px solid var(--forest);color:var(--forest);padding:8px 14px;border-radius:8px;}
+.flow-arrow{color:var(--turmeric-dark);font-weight:700;}
+.flow-branch{font-family:var(--font-mono);font-size:.68rem;color:var(--ink-soft);text-align:center;margin-top:6px;}
+
+/* Footer / tools */
+.tools-note{font-size:.82rem;color:var(--ink-soft);line-height:1.6;max-width:640px;margin:0 auto 12px;text-align:center;}
+.tools-list{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.tool-chip{font-family:var(--font-mono);font-size:.7rem;border:1px solid var(--forest);color:var(--forest);padding:5px 12px;border-radius:14px;}
+
+@media (prefers-reduced-motion: reduce){
+  .tier{transition:none;}
+}
+@media (max-width:720px){
+  .prototype-wrap{overflow-x:hidden;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="page-header">
+    <div class="brand">
+      <div class="brand-mark"><div class="t t1"></div><div class="t t2"></div><div class="t t3"></div></div>
+      <span class="brand-name">TiffinBox</span>
+    </div>
+    <h1>UI/UX Design — Home-Cooked Meal Delivery App</h1>
+    <p class="meta">Task 2 · Wireframes → Mockup → Clickable Prototype</p>
+  </header>
+
+  <section class="block">
+    <div class="block-heading"><span class="num">01</span><h2>Wireframes</h2></div>
+    <p class="block-sub">Low-fidelity structure for the three core screens, before visual design.</p>
+    <div class="wire-row">
+      <div class="wire-phone">
+        <div class="wire-screen">
+          <div class="wf-bar"></div>
+          <div class="wf-search"></div>
+          <div class="wf-row"><div class="wf-img"></div><div class="wf-lines"><div class="wf-line" style="width:80%"></div><div class="wf-line" style="width:50%"></div></div></div>
+          <div class="wf-row"><div class="wf-img"></div><div class="wf-lines"><div class="wf-line" style="width:70%"></div><div class="wf-line" style="width:45%"></div></div></div>
+          <div class="wf-row"><div class="wf-img"></div><div class="wf-lines"><div class="wf-line" style="width:75%"></div><div class="wf-line" style="width:40%"></div></div></div>
+          <div class="wf-navbar"><div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div><div class="wf-dot"></div></div>
+        </div>
+        <div class="wire-label">Home</div>
+      </div>
+      <div class="wire-phone">
+        <div class="wire-screen">
+          <div class="wf-row"><div class="wf-circle" style="border-radius:50%;width:16px;height:16px;"></div><div class="wf-bar sm"></div></div>
+          <div class="wf-cover"></div>
+          <div class="wf-line" style="width:60%"></div>
+          <div class="wf-row"><div class="wf-lines"><div class="wf-line" style="width:80%"></div></div><div class="wf-img" style="width:26px;height:16px;"></div></div>
+          <div class="wf-row"><div class="wf-lines"><div class="wf-line" style="width:70%"></div></div><div class="wf-img" style="width:26px;height:16px;"></div></div>
+          <div class="wf-row"><div class="wf-lines"><div class="wf-line" style="width:75%"></div></div><div class="wf-img" style="width:26px;height:16px;"></div></div>
+          <div class="wf-btn"></div>
+        </div>
+        <div class="wire-label">Cook Menu</div>
+      </div>
+      <div class="wire-phone">
+        <div class="wire-screen">
+          <div class="wf-bar sm"></div>
+          <div class="wf-lines"><div class="wf-line" style="width:90%"></div><div class="wf-line" style="width:60%"></div></div>
+          <div class="wf-radio"><div class="wf-circle"></div><div class="wf-line" style="width:50%"></div></div>
+          <div class="wf-radio"><div class="wf-circle"></div><div class="wf-line" style="width:40%"></div></div>
+          <div class="wf-radio"><div class="wf-circle"></div><div class="wf-line" style="width:45%"></div></div>
+          <div class="wf-lines" style="margin-top:auto"><div class="wf-line" style="width:55%"></div><div class="wf-line" style="width:35%"></div></div>
+          <div class="wf-btn"></div>
+        </div>
+        <div class="wire-label">Checkout</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-heading"><span class="num">02</span><h2>Mockup &amp; Clickable Prototype</h2></div>
+    <p class="hint">tap through it — home → cook menu → cart → checkout → order tracking</p>
+    <div class="prototype-wrap">
+      <div class="phone-frame">
+        <div class="notch"></div>
+        <div class="screen-area">
+
+          <!-- SPLASH -->
+          <div class="screen active" id="screen-splash">
+            <div class="splash-mark"><div class="handle"></div><div class="tier tier1"></div><div class="tier tier2"></div><div class="tier tier3"></div></div>
+            <h1>TiffinBox</h1>
+            <p>Ghar ka khaana, delivered.</p>
+            <button class="primary-btn" onclick="showScreen('home')">Get Started</button>
+          </div>
+
+          <!-- HOME -->
+          <div class="screen" id="screen-home">
+            <div class="top-bar"><h3>Namaste, Aditi 👋</h3></div>
+            <div class="chip-row">
+              <button class="chip active" onclick="selectChip(this)">Veg Thali</button>
+              <button class="chip" onclick="selectChip(this)">Non-Veg</button>
+              <button class="chip" onclick="selectChip(this)">Subscriptions</button>
+              <button class="chip" onclick="selectChip(this)">Snacks</button>
+            </div>
+            <div class="section-label">Home cooks near you</div>
+            <div class="cook-list">
+              <button class="cook-card" onclick="showScreen('detail')">
+                <div class="avatar">RS</div>
+                <div class="cook-info">
+                  <span class="name">Radha's Kitchen</span>
+                  <span class="dish">Gujarati Thali</span>
+                  <div class="cook-meta"><span>★ 4.8</span><span>· 25–30 min</span><span>· ₹149</span></div>
+                </div>
+              </button>
+              <button class="cook-card" onclick="showScreen('detail')">
+                <div class="avatar">AM</div>
+                <div class="cook-info">
+                  <span class="name">Amma's Corner</span>
+                  <span class="dish">South Indian Meals</span>
+                  <div class="cook-meta"><span>★ 4.9</span><span>· 20–25 min</span><span>· ₹129</span></div>
+                </div>
+              </button>
+              <button class="cook-card" onclick="showScreen('detail')">
+                <div class="avatar">PS</div>
+                <div class="cook-info">
+                  <span class="name">Punjab Da Swaad</span>
+                  <span class="dish">Punjabi Thali</span>
+                  <div class="cook-meta"><span>★ 4.7</span><span>· 30–35 min</span><span class="spice">· 🌶️ Spicy</span></div>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- DETAIL -->
+          <div class="screen" id="screen-detail">
+            <div class="cover">
+              <button class="back-btn" style="position:absolute;top:16px;left:14px;" onclick="showScreen('home')">←</button>
+            </div>
+            <div class="cover-info">
+              <span class="name">Radha's Kitchen</span>
+              <span class="sub">Home Cook · Ahmedabad · ★ 4.8 (320 orders)</span>
+            </div>
+            <div class="menu-list">
+              <div class="menu-row">
+                <div><span class="item-name">Gujarati Thali (Full)</span><span class="item-price">₹149</span></div>
+                <div class="stepper"><button onclick="changeQty('thali-full','Gujarati Thali (Full)',149,-1)" aria-label="Remove one">−</button><span data-qty-for="thali-full">0</span><button onclick="changeQty('thali-full','Gujarati Thali (Full)',149,1)" aria-label="Add one">+</button></div>
+              </div>
+              <div class="menu-row">
+                <div><span class="item-name">Gujarati Thali (Half)</span><span class="item-price">₹99</span></div>
+                <div class="stepper"><button onclick="changeQty('thali-half','Gujarati Thali (Half)',99,-1)" aria-label="Remove one">−</button><span data-qty-for="thali-half">0</span><button onclick="changeQty('thali-half','Gujarati Thali (Half)',99,1)" aria-label="Add one">+</button></div>
+              </div>
+              <div class="menu-row">
+                <div><span class="item-name">Extra Roti (2 pc)</span><span class="item-price">₹20</span></div>
+                <div class="stepper"><button onclick="changeQty('roti','Extra Roti (2 pc)',20,-1)" aria-label="Remove one">−</button><span data-qty-for="roti">0</span><button onclick="changeQty('roti','Extra Roti (2 pc)',20,1)" aria-label="Add one">+</button></div>
+              </div>
+              <div class="menu-row">
+                <div><span class="item-name">Gulab Jamun (2 pc)</span><span class="item-price">₹30</span></div>
+                <div class="stepper"><button onclick="changeQty('jamun','Gulab Jamun (2 pc)',30,-1)" aria-label="Remove one">−</button><span data-qty-for="jamun">0</span><button onclick="changeQty('jamun','Gulab Jamun (2 pc)',30,1)" aria-label="Add one">+</button></div>
+              </div>
+            </div>
+            <div class="sticky-bar" id="detail-sticky-bar">
+              <span class="sticky-text">0 items</span>
+              <button class="go" onclick="showScreen('cart')">View Cart →</button>
+            </div>
+          </div>
+
+          <!-- CART -->
+          <div class="screen" id="screen-cart">
+            <div class="top-bar"><button class="back-btn" onclick="showScreen('home')">←</button><h3>Your Tiffin Box</h3></div>
+            <div class="cart-body">
+              <div id="cart-items"></div>
+              <div class="empty-state" id="cart-empty">
+                <span>Your tiffin box is empty.</span>
+                <button class="primary-btn" onclick="showScreen('home')" style="background:var(--forest);color:var(--paper);">Browse Home Cooks</button>
+              </div>
+              <textarea class="note" placeholder="Add a note for the cook (e.g. less spicy)"></textarea>
+              <div class="summary-card">
+                <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal">₹0</span></div>
+                <div class="summary-row"><span>Delivery fee</span><span id="cart-delivery">₹0</span></div>
+                <div class="summary-row total"><span>Total</span><span id="cart-total">₹0</span></div>
+              </div>
+              <button class="full-btn" id="checkout-proceed-btn" onclick="showScreen('checkout')" disabled>Proceed to Checkout</button>
+            </div>
+          </div>
+
+          <!-- CHECKOUT -->
+          <div class="screen" id="screen-checkout">
+            <div class="top-bar"><button class="back-btn" onclick="showScreen('cart')">←</button><h3>Checkout</h3></div>
+            <div class="checkout-body">
+              <div class="addr-card">
+                <b>Deliver to</b>
+                Aditi Sharma · 204 Shreeji Residency, Vastrapur, Ahmedabad
+              </div>
+              <div class="section-label" style="padding:0;">Payment method</div>
+              <button class="pay-option selected" onclick="selectPayment(this)"><span class="dot"></span> UPI</button>
+              <button class="pay-option" onclick="selectPayment(this)"><span class="dot"></span> Card</button>
+              <button class="pay-option" onclick="selectPayment(this)"><span class="dot"></span> Cash on Delivery</button>
+              <div class="summary-card">
+                <div class="summary-row"><span id="checkout-count">0 items</span><span id="checkout-total">₹0</span></div>
+              </div>
+              <button class="full-btn" onclick="placeOrder()">Place Order</button>
+            </div>
+          </div>
+
+          <!-- TRACKING -->
+          <div class="screen" id="screen-tracking">
+            <div class="top-bar"><h3>Order Tracking</h3></div>
+            <div class="tracking-body">
+              <div class="timer" id="tracking-timer">18:00</div>
+              <div class="timer-label">Estimated arrival</div>
+              <div class="tracker">
+                <div class="tier-stack">
+                  <div class="handle"></div>
+                  <div class="tier" data-i="3"></div>
+                  <div class="tier" data-i="2"></div>
+                  <div class="tier" data-i="1"></div>
+                  <div class="tier" data-i="0"></div>
+                </div>
+                <ul class="stage-list">
+                  <li data-i="3">Delivered</li>
+                  <li data-i="2">Packed &amp; picked up</li>
+                  <li data-i="1">Cooking your meal</li>
+                  <li data-i="0">Order placed</li>
+                </ul>
+              </div>
+              <div class="rider-card">
+                <div class="avatar" style="border-radius:50%;">SK</div>
+                <div><span class="name">Suresh Kumar</span><span style="color:var(--ink-soft);">Delivery partner · ★ 4.9</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PROFILE -->
+          <div class="screen" id="screen-profile">
+            <div class="profile-head">
+              <div class="profile-avatar">AS</div>
+              <div style="font-family:var(--font-display);font-weight:600;">Aditi Sharma</div>
+              <div style="font-size:.7rem;color:var(--paper-dim);font-family:var(--font-mono);">aditi.sharma@email.com</div>
+            </div>
+            <div class="profile-list">
+              <button class="profile-row"><span>Order History</span><span class="chev">›</span></button>
+              <button class="profile-row"><span>Saved Cooks</span><span class="chev">›</span></button>
+              <button class="profile-row"><span>Tiffin Subscriptions</span><span class="chev">›</span></button>
+              <button class="profile-row"><span>Addresses</span><span class="chev">›</span></button>
+              <button class="profile-row"><span>Payment Methods</span><span class="chev">›</span></button>
+              <button class="profile-row" style="border-bottom:none;"><span>Settings</span><span class="chev">›</span></button>
+              <button class="logout">Log Out</button>
+            </div>
+          </div>
+
+          <!-- BOTTOM NAV -->
+          <div class="bottom-nav" id="bottom-nav">
+            <button class="nav-item active" data-target="home" onclick="showScreen(this.dataset.target)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+              Home
+            </button>
+            <button class="nav-item" data-target="tracking" onclick="showScreen(this.dataset.target)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+              Orders
+            </button>
+            <button class="nav-item" data-target="cart" onclick="showScreen(this.dataset.target)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16l-1.5 9h-13z"/><path d="M8 6V4a4 4 0 018 0v2"/></svg>
+              Cart
+              <span class="nav-badge" id="nav-cart-badge">0</span>
+            </button>
+            <button class="nav-item" data-target="profile" onclick="showScreen(this.dataset.target)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+              Profile
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-heading"><span class="num">03</span><h2>User Flow</h2></div>
+    <p class="block-sub">How a user moves from opening the app to receiving their order.</p>
+    <div class="flow-row">
+      <span class="flow-node">Splash</span><span class="flow-arrow">→</span>
+      <span class="flow-node">Home</span><span class="flow-arrow">→</span>
+      <span class="flow-node">Cook Menu</span><span class="flow-arrow">→</span>
+      <span class="flow-node">Cart</span><span class="flow-arrow">→</span>
+      <span class="flow-node">Checkout</span><span class="flow-arrow">→</span>
+      <span class="flow-node">Order Tracking</span>
+    </div>
+    <div class="flow-branch">Bottom nav also lets Home ⇄ Orders ⇄ Cart ⇄ Profile at any time — no dead ends.</div>
+  </section>
+
+  <section class="block" style="margin-bottom:10px;">
+    <div class="block-heading"><span class="num">04</span><h2>Tools &amp; Notes</h2></div>
+    <p class="tools-note">Prototyped directly in HTML/CSS/JS as a portable stand-in for a design tool — every screen, component, and state above maps 1:1 to frames, components, and interactions in any of the tools below.</p>
+    <div class="tools-list">
+      <span class="tool-chip">Figma</span><span class="tool-chip">Adobe XD</span><span class="tool-chip">Sketch</span><span class="tool-chip">InVision</span>
+    </div>
+  </section>
+
+</div>
+
+<script>
+let cart = {};
+
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  const navScreens = ['home','tracking','cart','profile'];
+  document.getElementById('bottom-nav').style.display = navScreens.includes(name) ? 'flex' : 'none';
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active', n.dataset.target===name));
+  if(name==='tracking'){ startTracking(); }
+}
+
+function selectChip(el){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function selectPayment(el){
+  document.querySelectorAll('.pay-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function changeQty(id, name, price, delta){
+  if(!cart[id]) cart[id] = {name, price, qty:0};
+  cart[id].qty = Math.max(0, cart[id].qty + delta);
+  if(cart[id].qty === 0) delete cart[id];
+  const qtyNow = cart[id] ? cart[id].qty : 0;
+  document.querySelectorAll(`[data-qty-for="${id}"]`).forEach(el=>el.textContent = qtyNow);
+  renderCart();
+}
+
+function renderCart(){
+  const ids = Object.keys(cart);
+  const subtotal = ids.reduce((s,id)=>s + cart[id].price * cart[id].qty, 0);
+  const count = ids.reduce((s,id)=>s + cart[id].qty, 0);
+  const deliveryFee = count > 0 ? 25 : 0;
+  const total = subtotal + deliveryFee;
+
+  const stickyBar = document.getElementById('detail-sticky-bar');
+  if(count > 0){
+    stickyBar.style.display = 'flex';
+    stickyBar.querySelector('.sticky-text').textContent = `${count} item${count>1?'s':''} · ₹${subtotal}`;
+  } else {
+    stickyBar.style.display = 'none';
+  }
+
+  const badge = document.getElementById('nav-cart-badge');
+  if(count > 0){ badge.style.display = 'flex'; badge.textContent = count; }
+  else { badge.style.display = 'none'; }
+
+  const list = document.getElementById('cart-items');
+  const emptyState = document.getElementById('cart-empty');
+  list.innerHTML = '';
+  if(ids.length === 0){
+    emptyState.style.display = 'flex';
+  } else {
+    emptyState.style.display = 'none';
+    ids.forEach(id=>{
+      const item = cart[id];
+      const row = document.createElement('div');
+      row.className = 'cart-row';
+      row.innerHTML = `
+        <div class="cart-row-info">
+          <span class="cart-row-name">${item.name}</span>
+          <span class="cart-row-price">₹${item.price} × ${item.qty}</span>
+        </div>
+        <div class="stepper">
+          <button aria-label="Remove one" onclick="changeQty('${id}','${item.name}',${item.price},-1)">−</button>
+          <span data-qty-for="${id}">${item.qty}</span>
+          <button aria-label="Add one" onclick="changeQty('${id}','${item.name}',${item.price},1)">+</button>
+        </div>`;
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById('cart-subtotal').textContent = `₹${subtotal}`;
+  document.getElementById('cart-delivery').textContent = count > 0 ? `₹${deliveryFee}` : '₹0';
+  document.getElementById('cart-total').textContent = `₹${total}`;
+  document.getElementById('checkout-total').textContent = `₹${total}`;
+  document.getElementById('checkout-count').textContent = `${count} item${count!==1?'s':''}`;
+
+  const checkoutBtn = document.getElementById('checkout-proceed-btn');
+  if(checkoutBtn) checkoutBtn.disabled = count === 0;
+}
+
+function placeOrder(){
+  if(Object.keys(cart).length === 0) return;
+  showScreen('tracking');
+}
+
+let trackingInterval = null, timerInterval = null, remainingSeconds = 0;
+
+function startTracking(){
+  clearInterval(trackingInterval);
+  clearInterval(timerInterval);
+  let stage = 0;
+  remainingSeconds = 18 * 60;
+  updateStage(stage);
+  updateTimer();
+  trackingInterval = setInterval(()=>{
+    stage++;
+    if(stage > 3){ clearInterval(trackingInterval); return; }
+    updateStage(stage);
+    if(stage === 3){
+      clearInterval(timerInterval);
+      document.getElementById('tracking-timer').textContent = 'Delivered';
+    }
+  }, 2600);
+  timerInterval = setInterval(()=>{
+    if(remainingSeconds > 0){ remainingSeconds--; updateTimer(); }
+    else { clearInterval(timerInterval); }
+  }, 1000);
+}
+
+function updateStage(stage){
+  document.querySelectorAll('.tier').forEach(t=>{
+    t.classList.toggle('done', parseInt(t.dataset.i) <= stage);
+  });
+  document.querySelectorAll('.stage-list li').forEach(li=>{
+    li.classList.toggle('done', parseInt(li.dataset.i) <= stage);
+  });
+}
+
+function updateTimer(){
+  const m = String(Math.floor(remainingSeconds/60)).padStart(2,'0');
+  const s = String(remainingSeconds%60).padStart(2,'0');
+  document.getElementById('tracking-timer').textContent = `${m}:${s}`;
+}
+
+renderCart();
+</script>
+</body>
+</html>
